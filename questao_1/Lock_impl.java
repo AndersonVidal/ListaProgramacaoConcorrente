@@ -20,18 +20,32 @@ class LockVar {
 
 class Lock {
     public void lock(LockVar varL) {
-        if (varL.flag == 1) {
+        int test;
+        synchronized (varL.flag) {
+            if (varL.flag == 1) test = 1;
+            else {
+                test = 0;
+                varL.flag = 1;
+            }
+        }
+
+        if (test == 1) {
                 Thread current = Thread.currentThread();
             synchronized (varL.guard) {
                 varL.pushThread(current);
                 LockSupport.park();
             }
-        } else varL.flag = 1;
+        }
     }
 
     public void unlock(LockVar varL) {
-        if (varL.queue.isEmpty()) varL.flag = 0;
-        else {
+        boolean test;
+        synchronized (varL.flag) {
+            if (test = varL.queue.isEmpty()) {
+               varL.flag = 0;
+            }
+        }
+        if (!test) {
             synchronized (varL.guard) {
                 Thread wakeup = varL.getThread();
                 LockSupport.unpark(wakeup);
