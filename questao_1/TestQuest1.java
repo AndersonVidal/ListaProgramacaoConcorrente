@@ -1,6 +1,6 @@
 import java.lang.Thread;
 
-public class Main {
+public class TestQuest1 {
     public static void main(String[] args) throws InterruptedException {
         CounterRoutine c = new CounterRoutine(0, 100000);
         Thread t1 = new Thread(c);
