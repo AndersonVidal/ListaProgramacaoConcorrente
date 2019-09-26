@@ -13,7 +13,8 @@ int main(int argc, char *argv[]) {
 		if (forkStatus == 0) {
 			exit(0);
 		} else if (forkStatus == -1) {
-			printf("Error creating process");
+			printf("Error creating process (%d)", i);
+			exit(1);
 		}
 	}
 	do {

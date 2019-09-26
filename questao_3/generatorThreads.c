@@ -12,7 +12,8 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < n; i++) {
 		int err = pthread_create(&threads[i], NULL, routine, NULL);
 		if (err) {
-			printf("ERROR in pthread create. ErrorCode: %d\n", err);		
+			printf("ERROR in pthread create (%d). ErrorCode: %d\n", i, err);
+			exit(1);		
 		}
 	}
 	for (int i = 0; i < n; i++) {
