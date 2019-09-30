@@ -1,0 +1,18 @@
+# started on Mon Sep 30 11:04:41 2019
+
+
+ Performance counter stats for './gp 10000' (5 runs):
+
+        882,983335      task-clock (msec)         #    3,010 CPUs utilized            ( +-  1,12% )
+               149      context-switches          #    0,169 K/sec                    ( +- 16,70% )
+            10.003      cpu-migrations            #    0,011 M/sec                    ( +-  0,01% )
+           216.069      page-faults               #    0,245 M/sec                    ( +-  1,13% )
+     3.149.598.311      cycles                    #    3,567 GHz                      ( +-  0,99% )
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+     1.995.641.284      instructions              #    0,63  insns per cycle          ( +-  0,74% )
+       391.154.653      branches                  #  442,992 M/sec                    ( +-  0,84% )
+         4.273.063      branch-misses             #    1,09% of all branches          ( +-  0,83% )
+
+       0,293302134 seconds time elapsed                                          ( +-  0,80% )
+

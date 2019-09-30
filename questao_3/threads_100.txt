@@ -1,0 +1,18 @@
+# started on Mon Sep 30 11:00:16 2019
+
+
+ Performance counter stats for './gt 100' (1000 runs):
+
+          3,170424      task-clock (msec)         #    1,290 CPUs utilized            ( +-  0,24% )
+                23      context-switches          #    0,007 M/sec                    ( +-  1,43% )
+               104      cpu-migrations            #    0,033 M/sec                    ( +-  0,11% )
+               266      page-faults               #    0,084 M/sec                    ( +-  0,01% )
+        10.383.368      cycles                    #    3,275 GHz                      ( +-  0,26% )
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+         7.646.474      instructions              #    0,74  insns per cycle          ( +-  0,06% )
+         1.586.911      branches                  #  500,536 M/sec                    ( +-  0,06% )
+            38.118      branch-misses             #    2,40% of all branches          ( +-  0,12% )
+
+       0,002457642 seconds time elapsed                                          ( +-  0,36% )
+

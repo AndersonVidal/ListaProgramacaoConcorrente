@@ -1,0 +1,18 @@
+# started on Mon Sep 30 11:00:19 2019
+
+
+ Performance counter stats for './gt 1000' (1000 runs):
+
+         29,002261      task-clock (msec)         #    1,368 CPUs utilized            ( +-  0,23% )
+               112      context-switches          #    0,004 M/sec                    ( +-  3,08% )
+             1.017      cpu-migrations            #    0,035 M/sec                    ( +-  0,19% )
+             2.131      page-faults               #    0,073 M/sec                    ( +-  0,00% )
+        98.179.043      cycles                    #    3,385 GHz                      ( +-  0,22% )
+   <not supported>      stalled-cycles-frontend  
+   <not supported>      stalled-cycles-backend   
+        70.860.842      instructions              #    0,72  insns per cycle          ( +-  0,05% )
+        14.827.306      branches                  #  511,247 M/sec                    ( +-  0,05% )
+           271.604      branch-misses             #    1,83% of all branches          ( +-  0,10% )
+
+       0,021195650 seconds time elapsed                                          ( +-  0,26% )
+
