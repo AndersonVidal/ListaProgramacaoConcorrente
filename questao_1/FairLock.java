@@ -4,41 +4,55 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.LockSupport;
 
 public class FairLock implements Lock{
-    AtomicInteger flag;
-    AtomicInteger guard;
-    List<Thread> queue;
+	private AtomicInteger flag;
+    private AtomicInteger guard;
+    private volatile List<Thread> queue;
+    private volatile long flagOwner;
 
     public FairLock() {
-        this.flag = new AtomicInteger(0);
+    	this.flag = new AtomicInteger(0);
         this.guard = new AtomicInteger(0);
         this.queue = new ArrayList<>();
     }
     
-    private boolean isLockHolder() {
-    	return queue.get(0).equals(Thread.currentThread());
+    private boolean unlockPermission() {
+    	return this.flag.get() == 1 && Thread.currentThread().getId() == this.flagOwner;
     }
 
 	@Override
 	public void lock() {
-		while(!this.guard.compareAndSet(0, 1));
-		this.queue.add(Thread.currentThread());
-		if (!this.flag.compareAndSet(0, 1)) {
-			this.guard.set(0);
-			LockSupport.park();
+		Thread curThread = Thread.currentThread();
+		while (!guard.compareAndSet(0, 1)); //Get guard
+		
+		if (!this.flag.compareAndSet(0, 1)) { // If not first in queue, sleep
+			this.queue.add(curThread);
+			guard.set(0);
+			while (curThread.getId() != this.flagOwner) { //Dealing with spurious wakeup.
+				LockSupport.park();
+			}
+		} else {
+			this.flagOwner = curThread.getId();
 		}
-		this.guard.set(0);
+		guard.set(0);
 	}
 
 	@Override
 	public void unlock() {
-		while(!this.guard.compareAndSet(0, 1));
-		if (this.flag.get() == 1 && isLockHolder()) {
-			this.queue.remove(0);
-			if (!queue.isEmpty())
-				LockSupport.unpark(queue.get(0));
-			else
+		while (!guard.compareAndSet(0, 1)); //Get guard
+		
+		if (unlockPermission()) { //Permission to unlock
+			if (!this.queue.isEmpty()) {
+				Thread next = this.queue.remove(0);
+				this.flagOwner = next.getId();
+				LockSupport.unpark(next); // If someone in the queue, wake it!
+				return;
+			} else {
+				this.flagOwner = 0;
 				this.flag.set(0);
+				this.guard.set(0);
+			}
+		} else {
+			this.guard.set(0);
 		}
-		this.guard.set(0);
 	}
 }

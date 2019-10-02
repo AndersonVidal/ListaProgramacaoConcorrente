@@ -17,10 +17,10 @@ public class CounterRoutine implements Runnable {
 
     @Override
     public void run() {
-    	lockVar.lock();
         for (long i = this.start; i < this.end; i++) {
+        	lockVar.lock();
         	this.count++;
+        	lockVar.unlock();
         }
-    	lockVar.unlock();
     }
 }
