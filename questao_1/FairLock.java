@@ -6,8 +6,8 @@ import java.util.concurrent.locks.LockSupport;
 public class FairLock implements Lock{
 	private AtomicInteger flag;
     private AtomicInteger guard;
-    private volatile List<Thread> queue;
-    private volatile long flagOwner;
+    private List<Thread> queue;
+    private long flagOwner;
 
     public FairLock() {
     	this.flag = new AtomicInteger(0);
@@ -27,6 +27,7 @@ public class FairLock implements Lock{
 		if (!this.flag.compareAndSet(0, 1)) { // If not first in queue, sleep
 			this.queue.add(curThread);
 			guard.set(0);
+			LockSupport.park();
 			while (curThread.getId() != this.flagOwner) { //Dealing with spurious wakeup.
 				LockSupport.park();
 			}
@@ -44,7 +45,7 @@ public class FairLock implements Lock{
 			if (!this.queue.isEmpty()) {
 				Thread next = this.queue.remove(0);
 				this.flagOwner = next.getId();
-				LockSupport.unpark(next); // If someone in the queue, wake it!
+				LockSupport.unpark(next); // If someone in the queue, wake it! Waked thread should release guard.
 				return;
 			} else {
 				this.flagOwner = 0;
@@ -52,7 +53,7 @@ public class FairLock implements Lock{
 				this.guard.set(0);
 			}
 		} else {
-			this.guard.set(0);
+			this.guard.set(0); //Couldn't get permission to unlock, release guard.
 		}
 	}
 }
