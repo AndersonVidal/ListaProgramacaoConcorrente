@@ -1,29 +1,26 @@
+package questao2;
+
 public class CountDownLatch {
-    private int latch;
 
-    public CountDownLatch(int latch) {
-        if (latch < 0) {
-            throw new IllegalArgumentException();
-        }
-        this.latch = latch;
-    }
+	 private Integer count; 
+	
+	 public CountDownLatch(int count) {
+		 this.count = count;
+	 }
+	 
+	 public synchronized void countDown() {
+		 if (this.count > 0) {
+			 this.count--;
+			 if (this.count == 0) {
+			 	this.notifyAll();
+			 }
+		 }
+	 }
+	 
+	 public synchronized void await() throws InterruptedException {
+		while (this.count > 0) {
+			this.wait();
+		}
+	}
 
-    public int getLatch() {
-        return this.latch;
-    }
-
-    public void await() throws InterruptedException {
-        while (this.latch > 0) {
-            synchronized (this) {
-                this.wait();
-            }
-        }
-    }
-
-    public synchronized void countDown() {
-        if (this.latch > 0) {
-            this.latch--;
-            if (this.latch == 0) notifyAll();
-        }
-    }
 }
