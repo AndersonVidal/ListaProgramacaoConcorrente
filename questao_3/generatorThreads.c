@@ -1,8 +1,10 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <pthread.h>
 
 void* routine (void *args) {
+	sleep(1);
 	pthread_exit(0);
 }
 
