@@ -1,18 +1,18 @@
-# started on Mon Sep 30 11:04:10 2019
+# started on Mon Oct  7 15:48:00 2019
 
 
- Performance counter stats for './gp 1000' (1000 runs):
+ Performance counter stats for './gp 1000' (30 runs):
 
-         88,553034      task-clock (msec)         #    2,866 CPUs utilized            ( +-  0,17% )
-                17      context-switches          #    0,192 K/sec                    ( +-  1,67% )
-             1.001      cpu-migrations            #    0,011 M/sec                    ( +-  0,00% )
-            21.696      page-faults               #    0,245 M/sec                    ( +-  0,10% )
-       315.002.632      cycles                    #    3,557 GHz                      ( +-  0,17% )
+         96,865216      task-clock (msec)         #    3,190 CPUs utilized            ( +-  0,41% )
+             1.039      context-switches          #    0,011 M/sec                    ( +-  0,23% )
+             1.480      cpu-migrations            #    0,015 M/sec                    ( +-  0,68% )
+            21.555      page-faults               #    0,223 M/sec                    ( +-  0,53% )
+       342.455.112      cycles                    #    3,535 GHz                      ( +-  0,41% )
    <not supported>      stalled-cycles-frontend  
    <not supported>      stalled-cycles-backend   
-       196.692.244      instructions              #    0,62  insns per cycle          ( +-  0,06% )
-        38.563.762      branches                  #  435,488 M/sec                    ( +-  0,07% )
-           427.375      branch-misses             #    1,11% of all branches          ( +-  0,12% )
+       204.485.955      instructions              #    0,60  insns per cycle          ( +-  0,39% )
+        40.109.584      branches                  #  414,076 M/sec                    ( +-  0,42% )
+           517.432      branch-misses             #    1,29% of all branches          ( +-  0,29% )
 
-       0,030902956 seconds time elapsed                                          ( +-  0,21% )
+       0,030366870 seconds time elapsed                                          ( +-  0,48% )
 

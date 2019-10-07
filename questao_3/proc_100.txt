@@ -1,18 +1,18 @@
-# started on Mon Sep 30 11:04:06 2019
+# started on Mon Oct  7 15:48:00 2019
 
 
- Performance counter stats for './gp 100' (1000 runs):
+ Performance counter stats for './gp 100' (30 runs):
 
-          9,048370      task-clock (msec)         #    2,585 CPUs utilized            ( +-  0,21% )
-                 2      context-switches          #    0,231 K/sec                    ( +-  4,10% )
-               100      cpu-migrations            #    0,011 M/sec                    ( +-  0,03% )
-             2.214      page-faults               #    0,245 M/sec                    ( +-  0,10% )
-        31.729.667      cycles                    #    3,507 GHz                      ( +-  0,21% )
+         10,161839      task-clock (msec)         #    2,807 CPUs utilized            ( +-  0,66% )
+               105      context-switches          #    0,010 M/sec                    ( +-  0,69% )
+               153      cpu-migrations            #    0,015 M/sec                    ( +-  0,96% )
+             2.263      page-faults               #    0,223 M/sec                    ( +-  0,76% )
+        35.418.872      cycles                    #    3,485 GHz                      ( +-  0,70% )
    <not supported>      stalled-cycles-frontend  
    <not supported>      stalled-cycles-backend   
-        20.019.318      instructions              #    0,63  insns per cycle          ( +-  0,06% )
-         3.928.108      branches                  #  434,123 M/sec                    ( +-  0,07% )
-            47.451      branch-misses             #    1,21% of all branches          ( +-  0,21% )
+        21.017.033      instructions              #    0,59  insns per cycle          ( +-  0,42% )
+         4.123.214      branches                  #  405,755 M/sec                    ( +-  0,44% )
+            59.336      branch-misses             #    1,44% of all branches          ( +-  0,73% )
 
-       0,003500179 seconds time elapsed                                          ( +-  0,31% )
+       0,003620580 seconds time elapsed                                          ( +-  1,06% )
 

@@ -1,18 +1,18 @@
-# started on Mon Sep 30 11:00:19 2019
+# started on Mon Oct  7 15:47:52 2019
 
 
- Performance counter stats for './gt 1000' (1000 runs):
+ Performance counter stats for './gt 1000' (30 runs):
 
-         29,002261      task-clock (msec)         #    1,368 CPUs utilized            ( +-  0,23% )
-               112      context-switches          #    0,004 M/sec                    ( +-  3,08% )
-             1.017      cpu-migrations            #    0,035 M/sec                    ( +-  0,19% )
-             2.131      page-faults               #    0,073 M/sec                    ( +-  0,00% )
-        98.179.043      cycles                    #    3,385 GHz                      ( +-  0,22% )
+         34,864360      task-clock (msec)         #    1,575 CPUs utilized            ( +-  0,31% )
+             1.697      context-switches          #    0,049 M/sec                    ( +-  0,57% )
+             1.597      cpu-migrations            #    0,046 M/sec                    ( +-  0,44% )
+             2.131      page-faults               #    0,061 M/sec                    ( +-  0,01% )
+       113.780.514      cycles                    #    3,264 GHz                      ( +-  0,31% )
    <not supported>      stalled-cycles-frontend  
    <not supported>      stalled-cycles-backend   
-        70.860.842      instructions              #    0,72  insns per cycle          ( +-  0,05% )
-        14.827.306      branches                  #  511,247 M/sec                    ( +-  0,05% )
-           271.604      branch-misses             #    1,83% of all branches          ( +-  0,10% )
+        79.069.212      instructions              #    0,69  insns per cycle          ( +-  0,09% )
+        16.476.422      branches                  #  472,586 M/sec                    ( +-  0,09% )
+           352.520      branch-misses             #    2,14% of all branches          ( +-  0,23% )
 
-       0,021195650 seconds time elapsed                                          ( +-  0,26% )
+       0,022132976 seconds time elapsed                                          ( +-  0,43% )
 
