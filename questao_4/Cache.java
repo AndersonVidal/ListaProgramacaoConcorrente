@@ -1,4 +1,5 @@
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 public class Cache<K, V> {
@@ -7,13 +8,15 @@ public class Cache<K, V> {
     private static int maxTime;
 
     public Cache(Map<K, V> cacheMap, int maxTime) {
-        this.cacheMap = cacheMap;
+        this.cacheMap = new HashMap<>();
+        this.cacheMap.putAll(cacheMap);
         this.maxTime = maxTime;
     }
 
     public void update(Map<K, V> cache) {
         if (needsUpdate()) {
-            this.cacheMap = cache;
+            this.cacheMap = new HashMap<>();
+            this.cacheMap.putAll(cache);
             this.lastUpdateTime = new Date().getTime();
         }
     }

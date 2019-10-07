@@ -94,11 +94,12 @@ public class ConcurrentMapImpl<K, V> implements Map<K, V> {
             }
             this.usingCache = true;
         }
+
         this.database.put(key, value);
 
         synchronized (this) {
-            this.usingCache = false;
             this.cache.update(this.database);
+            this.usingCache = false;
             this.notifyAll();
         }
         return value;
@@ -120,10 +121,11 @@ public class ConcurrentMapImpl<K, V> implements Map<K, V> {
         V result = this.database.remove(key);
 
         synchronized (this) {
-            this.usingCache = false;
             this.cache.update(this.database);
+            this.usingCache = false;
             this.notifyAll();
         }
+
         return result;
     }
 
