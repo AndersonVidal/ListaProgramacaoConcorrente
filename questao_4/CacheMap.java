@@ -16,23 +16,8 @@ public class CacheMap<K, V> implements Map<K, V> {
         this.cache = new HashMap<>();
         this.lastUpdateTime = new Date().getTime();
 
-        Thread updateThread = new Thread(() -> {
-            while (true) {
-                try {
-                    sleep(timeoutSecs * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                updateCache();
-            }
-        });
-
-//        updateThread.start();
-//        try {
-//            updateThread.join();
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();
-//        }
+        Thread updateThread = new Thread(new CacheUpdater());
+        updateThread.start();
     }
 
     protected void updateCache() {
@@ -142,7 +127,7 @@ public class CacheMap<K, V> implements Map<K, V> {
                     e.printStackTrace();
                 }
                 updateCache();
-                System.out.println("db updated");
+                System.out.println("by thread");
             }
         }
     }

@@ -19,7 +19,7 @@ public class ConcurrentGetter implements Runnable {
             }
             System.out.println("[GET]" + this.cacheMap.get(key.toString()) + " got from key: " + key);
             try {
-                sleep(100);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

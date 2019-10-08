@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+import static java.lang.Thread.sleep;
+
 public class TestQuest4 {
     public static void main(String[] args) throws InterruptedException {
         Map<String, Integer> database = new HashMap<>();
@@ -14,6 +16,8 @@ public class TestQuest4 {
         t1.join();
         t2.join();
         t3.join();
+
+        sleep(1000);
 
         for (String key : database.keySet()) {
             System.out.println("( " + key + ", " + database.get(key) + ")");

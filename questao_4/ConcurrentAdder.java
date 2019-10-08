@@ -21,7 +21,7 @@ public class ConcurrentAdder implements Runnable {
             this.cacheMap.put(key.toString(), value);
             System.out.println("[ADD] put key: " + key + " value: " + value);
             try {
-                sleep(100);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

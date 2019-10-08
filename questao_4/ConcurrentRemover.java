@@ -20,7 +20,7 @@ public class ConcurrentRemover implements Runnable {
             Object result = this.cacheMap.remove(key.toString());
             System.err.println("[REMOVE] " + result + " removed with key: " + key);
             try {
-                sleep(100);
+                sleep(500);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
