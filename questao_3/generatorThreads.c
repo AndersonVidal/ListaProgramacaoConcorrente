@@ -4,7 +4,8 @@
 #include <pthread.h>
 
 void* routine (void *args) {
-	sleep(0.2);
+	int arr[100000];
+	sleep(1);
 	pthread_exit(0);
 }
 

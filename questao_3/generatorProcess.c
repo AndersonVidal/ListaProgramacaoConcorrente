@@ -11,7 +11,8 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < n; i++) {
 		int forkStatus = fork();
 		if (forkStatus == 0) {
-			sleep(0.2);
+			int arr[1000000];
+			sleep(1);
 			exit(0);
 		} else if (forkStatus == -1) {
 			printf("Error creating process (%d)", i);
