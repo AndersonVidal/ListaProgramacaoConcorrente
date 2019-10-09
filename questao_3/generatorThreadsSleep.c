@@ -4,6 +4,7 @@
 #include <pthread.h>
 
 void* routine (void *args) {
+	sleep(2);
 	pthread_exit(0);
 }
 

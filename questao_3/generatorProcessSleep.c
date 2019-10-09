@@ -11,6 +11,7 @@ int main(int argc, char *argv[]) {
 	for (int i = 0; i < n; i++) {
 		int forkStatus = fork();
 		if (forkStatus == 0) {
+			sleep(2);
 			exit(0);
 		} else if (forkStatus == -1) {
 			printf("Error creating process (%d)", i);
