@@ -6,9 +6,11 @@ public class TestQuest1 {
         Thread t1 = new Thread(c);
         Thread t2 = new Thread(c);
         Thread t3 = new Thread(c);
+        System.out.println("Criadas");
         t1.start();
         t2.start();
         t3.start();
+        System.out.println("Started");
         t1.join();
         t2.join();
         t3.join();
