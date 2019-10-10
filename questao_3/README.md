@@ -53,7 +53,7 @@ Observamos acima que houve uma diminuição na quantidade de memória utilizada 
 
 ![alt text](output/bar_mean_time_unit.png?raw=true)
 
-Já se tratando de tempo, observamos que houve um aumento no tempo necessário para inicializar uma nova thread ou processo no decorrer do incremento do número de instâncias.
+Já se tratando de tempo, observamos que também é retratada uma diminuição no tempo necessário para inicializar uma nova thread ou processo no decorrer do incremento do número de instâncias.
 
 ### Boxplots
 

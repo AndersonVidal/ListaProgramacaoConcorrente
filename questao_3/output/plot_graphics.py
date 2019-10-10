@@ -351,9 +351,9 @@ plt.close(fig)
 ## PER-THREAD AND PER-PROCESS DATA BARS
 
 thread_hist_mem = [round(statistics.mean(np.array(thread_mem_data_map[key]) / key), 2) for key in keys]
-thread_hist_time = [np.format_float_scientific(statistics.mean(np.array(thread_time_data_map[key]) / key), precision=3) for key in keys]
+thread_hist_time = [statistics.mean(np.array(thread_time_data_map[key]) / key) for key in keys]
 proc_hist_mem = [round(statistics.mean(np.array(proc_mem_data_map[key]) / key), 2) for key in keys]
-proc_hist_time = [np.format_float_scientific(statistics.mean(np.array(proc_time_data_map[key]) / key), precision=3) for key in keys]
+proc_hist_time = [statistics.mean(np.array(proc_time_data_map[key]) / key) for key in keys]
 
 ### MEMORY
 
@@ -388,9 +388,10 @@ ax.set_title('Média de tempo por cada instância criada')
 ax.set_xticks(np.array(range(0, len(keys))))
 ax.set_xticklabels(keys)
 ax.legend(loc='upper left', fontsize='x-large')
+ax.yaxis.grid(True)
 
-autolabel(rects1)
-autolabel(rects2)
+# autolabel(rects1)
+# autolabel(rects2)
 
 fig.tight_layout()
 
