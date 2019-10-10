@@ -28,9 +28,9 @@ O experimento foi realizado com diversos números de instâncias de threads e pr
 
 O experimento e a coleta de dados foi realizada em uma máquina com as seguintes configurações:
 
-	- Sistema operacional: Ubuntu Mate 18.04
-	- Processador: Intel(R) Core(TM) i7-7500U @ 2.70GHz (2 núcleos e 4 threads)
-	- Memória RAM: 8GB DDR4 2133 MHz
+- Sistema operacional: Ubuntu Mate 18.04
+- Processador: Intel(R) Core(TM) i7-7500U @ 2.70GHz (2 núcleos e 4 threads)
+- Memória RAM: 8GB DDR4 2133 MHz
 
 ### Resultados: 
 
@@ -44,3 +44,24 @@ Como é possível observar com os gráficos acima, os resultados esperados de fa
 Para que seja possível ter uma melhor dimensão da diferença dos valores, temos abaixo uma visualização gráfica do crescimento dos valores, tanto de memória quanto de tempo, comparando threads com processos. A partir desses dados, pudemos constatar que , em nosso experimento, os processos apresentaram em média um consumo de memória 556,41% maior que o de threads e um tempo 170,69% maior para criar todas as instâncias.
 
 ![alt text](output/bar_increase_perc.png?raw=true)
+
+#### Boxplots
+
+![alt text](output/boxplot_10_50_time.png?raw=true)
+![alt text](output/boxplot_60_100_time.png?raw=true)
+![alt text](output/boxplot_1K_5K_time.png?raw=true)
+![alt text](output/boxplot_6K_10K_time.png?raw=true)
+
+![alt text](output/boxplot_10_50_mem.png?raw=true)
+![alt text](output/boxplot_60_100_mem.png?raw=true)
+![alt text](output/boxplot_1K_mem.png?raw=true)
+![alt text](output/boxplot_1K_mem.png?raw=true)
+![alt text](output/boxplot_2K_mem.png?raw=true)
+![alt text](output/boxplot_3K_mem.png?raw=true)
+![alt text](output/boxplot_4K_mem.png?raw=true)
+![alt text](output/boxplot_5K_mem.png?raw=true)
+![alt text](output/boxplot_6K_mem.png?raw=true)
+![alt text](output/boxplot_7K_mem.png?raw=true)
+![alt text](output/boxplot_8K_mem.png?raw=true)
+![alt text](output/boxplot_9K_mem.png?raw=true)
+![alt text](output/boxplot_10K_mem.png?raw=true)
