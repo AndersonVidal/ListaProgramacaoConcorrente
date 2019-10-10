@@ -287,8 +287,8 @@ time_increase_perc = []
 column_width = 0.20
 
 for i in range(len(keys)):
-    mem_increase_perc.append(round((mean_thread_mem_list[i] * 100.0) / mean_proc_mem_list[i], 2))
-    time_increase_perc.append(round((mean_thread_time_list[i] * 100.0) / mean_proc_time_list[i], 2))
+    mem_increase_perc.append(round((mean_proc_mem_list[i] * 100.0) / mean_thread_mem_list[i], 2))
+    time_increase_perc.append(round((mean_proc_time_list[i] * 100.0) / mean_thread_time_list[i], 2))
 
 fig, ax = plt.subplots(figsize=(20, 9))
 rects1 = ax.bar(np.array(range(0, len(keys))) - column_width / 2, np.array(mem_increase_perc), column_width, label='Memória (KB)')
@@ -298,7 +298,7 @@ ax.set_xlabel('Número de instâncias')
 ax.set_title('Aumento dos valores de tempo e memória com múltiplas instâncias de threads para processos')
 ax.set_xticks(np.array(range(0, len(keys))))
 ax.set_xticklabels(keys)
-ax.legend(loc='best')
+ax.legend(loc='upper left', fontsize='x-large')
 
 def autolabel(rects):
     """Attach a text label above each bar in *rects*, displaying its height."""
@@ -318,5 +318,7 @@ fig.tight_layout()
 
 plt.savefig('bar_increase_perc.png', bbox_inches='tight')
 plt.clf()
+
+print('mean memory increase: ' + str(statistics.mean(mem_increase_perc)) + '%', 'mean time increase: ' + str(statistics.mean(time_increase_perc)) + '%')
 
 print('All graphs were plotted with success.')
