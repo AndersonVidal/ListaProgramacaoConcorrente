@@ -16,12 +16,31 @@ O objetivo da análise é ver qual o custo de memória e tempo de processamento 
 
 O sleep passado para as threads/processos serve para dar tempo de a criação das estruturas ser completa. Nessa meio tempo, em ~0.7 segundos, é executado um ps aux que captura as informações dos processos relacionados ao nosso problema. Foi usado o Resident Set Size(RSS) como a métrica para uso de memória, ele é retornado no ps aux e representa a quantidade de memória alocada para aquele processo na memória RAM, o dado coletado foi o total de RSS dos processos, incluindo o processo que cria as threads/processos.
 
-### Esperado
+### Dados obtidos
 
-É esperado que a criação de threads seja mais leve, já que apenas é necessário criar uma nova stack no espaço de endereçamento lógico do processo, em contra partida, para criar um novo processo é necessário copiar todo o processo pai. Como threads também utilizam de memória compartilhada, é esperado que seu uso de memória seja menor, ainda mais com todas executando a mesma função, já para processos, cada processo necessitaria das suas próprias páginas na memória para poder executar, mesmo elas sendo iguais às dos outros processos, aumentando muito o número de page-faults e por consequente, de acesso à memória.
+O experimento foi realizado com diversos números de instâncias de threads e processos, para assim obtermos o impacto no tempo e na memória em situações diferentes. A quantidade de instâncias obedeceu a seguinte progressão: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000. Para cada quantidade, formam feitas 100 execuções do programa descrito acima, obtendo assim 100 amostras de memória total e tempo total para cada uma das quantidades de instâncias.
+
+### Resultados Esperados
+
+É esperado que a criação de threads seja mais leve (consuma menos memória e aconteça em menos tempo), já que apenas é necessário criar uma nova stack no espaço de endereçamento lógico do processo, enquanto que para criar um novo processo é necessário realizar uma cópia de todo o processo pai. Como threads também utilizam de memória compartilhada, é esperado que seu uso de memória seja menor, ainda mais com todas executando a mesma função, já para processos, cada processo necessitaria das suas próprias páginas na memória para poder executar, mesmo que sejam iguais às dos outros processos, aumentando muito o número de page-faults e, consequentemente, de acesso à memória.
 
 ### Ambiente:
 
-Os testes foram executados em uma máquina rodando Ubuntu Mate 18.04, Intel(R) Core(TM) i7-7500U CPU @ 2.70GHz, 8GB RAM DDR4 2133 MHz
+O experimento e a coleta de dados foi realizada em uma máquina com as seguintes configurações:
+
+	- Sistema operacional: Ubuntu Mate 18.04
+	- Processador: Intel(R) Core(TM) i7-7500U @ 2.70GHz (2 núcleos e 4 threads)
+	- Memória RAM: 8GB DDR4 2133 MHz
 
 ### Resultados: 
+
+Para plotar os gráficos dos dados obtidos, foi utilizado o script Python (versão 3.7.3) presente neste repositório ([aqui](output/plot_graphics.py)) e foram utilizadas as bibliotecas Numpy e Matplotlib (o script pode ser facilmente executado utilizando o Anaconda, caso não se deseje instalar as bibliotecas separadamente.
+
+![alt text](output/rect_proc_x_thread_time.png?raw=true)
+![alt text](output/rect_proc_x_thread_mem.png?raw=true)
+
+Como é possível observar com os gráficos acima, os resultados esperados de fato se concretizaram, onde a quantidade de memória utilizada pelos processos foi (muito) maior que a utilizada pelas threads, além do tempo de criação dos processos também ter sido maior do que o de criação das threads.
+
+Para que seja possível ter uma melhor dimensão da diferença dos valores, temos abaixo uma visualização gráfica do crescimento dos valores, tanto de memória quanto de tempo, comparando threads com processos. A partir desses dados, pudemos constatar que , em nosso experimento, os processos apresentaram em média um consumo de memória 556,41% maior que o de threads e um tempo 170,69% maior para criar todas as instâncias.
+
+![alt text](output/bar_increase_perc.png?raw=true)
