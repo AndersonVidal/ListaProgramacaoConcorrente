@@ -9,13 +9,13 @@ echo "Repetition rate: ${REPETITION_RATE:= 100}"
 
 echo "======= Colleting data - small number of threads ======= (ETA: 2000 SECONDS)"
 
-echo "NumberOfThreads/Process: ${NUMBER_OF_THREADS:= 10, 20, 30, 40, 50, 60, 70, 80, 90, 100}"
+echo "NumberOfThreads/Process: ${NUMBER_SMALL:= 10, 20, 30, 40, 50, 60, 70, 80, 90, 100}"
 
 mkdir -p output/
 echo "NumberCreated, TotalCreationTime, TotalRSS" > output/procCreationTimeSmall.csv
 echo "NumberCreated, TotalCreationTime, TotalRSS" > output/threadCreationTimeSmall.csv
 
-for n in ${NUMBER_OF_THREADS};
+for n in ${NUMBER_SMALL};
 do
     echo "Running Experiment for ${n} threads/processes - small numbers."
     for i in `seq 0 $REPETITION_RATE`
@@ -36,13 +36,13 @@ done
 
 echo "======= Colleting data - big number of threads ======= (ETA: 2000 SECONDS)"
 
-echo "NumberOfThreads/Process: ${NUMBER_OF_THREADS:= 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}"
+echo "NumberOfThreads/Process: ${NUMBER_BIG:= 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000}"
 
 mkdir -p output/
 echo "NumberOfProcess, TotalCreationTime, TotalRSS" > output/procCreationTime.csv
 echo "NumberOfThreads, TotalCreationTime, TotalRSS" > output/threadCreationTime.csv
 
-for n in ${NUMBER_OF_THREADS};
+for n in ${NUMBER_BIG};
 do
     echo "Running Experiment for ${n} threads/processes."
     for i in `seq 0 $REPETITION_RATE`
@@ -62,5 +62,3 @@ do
 done
 
 echo "======= FINISHED ======="
-
-rm *.out
