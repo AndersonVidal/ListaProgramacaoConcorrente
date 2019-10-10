@@ -2,7 +2,7 @@
 
 ## Metodologia 
 
-### Tempo de criação: 
+### Tempo de criação
 
 O objetivo da análise é ver qual o custo de memória e tempo de processamento no uso de threads vs processos. Para isso, foram criados dois programas similares, um que usa thread e um que usa processos, que fazem:
 
@@ -24,7 +24,7 @@ O experimento foi realizado com diversos números de instâncias de threads e pr
 
 É esperado que a criação de threads seja mais leve (consuma menos memória e aconteça em menos tempo), já que apenas é necessário criar uma nova stack no espaço de endereçamento lógico do processo, enquanto que para criar um novo processo é necessário realizar uma cópia de todo o processo pai. Como threads também utilizam de memória compartilhada, é esperado que seu uso de memória seja menor, ainda mais com todas executando a mesma função, já para processos, cada processo necessitaria das suas próprias páginas na memória para poder executar, mesmo que sejam iguais às dos outros processos, aumentando muito o número de page-faults e, consequentemente, de acesso à memória.
 
-### Ambiente:
+### Ambiente
 
 O experimento e a coleta de dados foi realizada em uma máquina com as seguintes configurações:
 
@@ -32,7 +32,7 @@ O experimento e a coleta de dados foi realizada em uma máquina com as seguintes
 - Processador: Intel(R) Core(TM) i7-7500U @ 2.70GHz (2 núcleos e 4 threads)
 - Memória RAM: 8GB DDR4 2133 MHz
 
-### Resultados: 
+## Resultados
 
 Para plotar os gráficos dos dados obtidos, foi utilizado o script Python (versão 3.7.3) presente neste repositório ([aqui](output/plot_graphics.py)) e foram utilizadas as bibliotecas Numpy e Matplotlib (o script pode ser facilmente executado utilizando o Anaconda, caso não se deseje instalar as bibliotecas separadamente.
 
@@ -45,23 +45,73 @@ Para que seja possível ter uma melhor dimensão da diferença dos valores, temo
 
 ![alt text](output/bar_increase_perc.png?raw=true)
 
-#### Boxplots
+Além disso, verificamos o comportamento de cada thread e processo individualmente, ou seja, com o aumento da quantidade de instâncias, como fica a divisão de tempo/instância e memória/instância. Essa informação esta disposta nos dois gráficos seguintes.
 
+![alt text](output/bar_mean_mem_unit.png?raw=true)
+
+Observamos acima que houve uma diminuição na quantidade de memória utilizada por uma única thread ou processo no decorrer do incremento do número de instâncias. **__PORQUE OCORRE?__**
+
+![alt text](output/bar_mean_time_unit.png?raw=true)
+
+Já se tratando de tempo, observamos que houve um aumento no tempo necessário para inicializar uma nova thread ou processo no decorrer do incremento do número de instâncias.
+
+### Boxplots
+
+Os dados obtidos com o esperimento foram organizados em gráficos de boxplot, para cada número de instâncias e para dados de memória e tempo. Os gráficos para processos e threads foram colocados lado a lado, entretanto, deve-se observar que a escala, na maioria dos casos, não estará equivalente, pois fazê-lo iria dificultar a visualização (principalmente para os números maiores de instâncias, dado que a discrepância entre os valores tende a ser maior).
+
+O principal intuito com as representações abaixo é o de observar a forma como se deu a distribuição dos dados por nós obtidos e, especialmente, verificar a quantidade e a disposição de valores discrepantes na distribuição.
+
+É possível observar uma grande dispersão e presença considerável de valores discrepantes principalmente para os dados de processos e relativos à valores de memória (gráficos logo abaixo). 
+
+### Tempo
+
+#### 10 à 50 Instâncias
 ![alt text](output/boxplot_10_50_time.png?raw=true)
+
+#### 60 à 100 Instâncias
 ![alt text](output/boxplot_60_100_time.png?raw=true)
+
+#### 1K à 5K Instâncias
 ![alt text](output/boxplot_1K_5K_time.png?raw=true)
+
+#### 6K à 10K Instâncias
 ![alt text](output/boxplot_6K_10K_time.png?raw=true)
 
+
+### Memória
+
+#### 10 à 50 Instâncias
 ![alt text](output/boxplot_10_50_mem.png?raw=true)
+
+#### 60 à 100 Instâncias
 ![alt text](output/boxplot_60_100_mem.png?raw=true)
+
+#### 1K Instâncias
 ![alt text](output/boxplot_1K_mem.png?raw=true)
-![alt text](output/boxplot_1K_mem.png?raw=true)
+
+#### 2K Instâncias
 ![alt text](output/boxplot_2K_mem.png?raw=true)
+
+#### 3K Instâncias
 ![alt text](output/boxplot_3K_mem.png?raw=true)
+
+#### 4K Instâncias
 ![alt text](output/boxplot_4K_mem.png?raw=true)
+
+#### 5K Instâncias
 ![alt text](output/boxplot_5K_mem.png?raw=true)
+
+#### 6K Instâncias
 ![alt text](output/boxplot_6K_mem.png?raw=true)
+
+#### 7K Instâncias
 ![alt text](output/boxplot_7K_mem.png?raw=true)
+
+#### 8K Instâncias
 ![alt text](output/boxplot_8K_mem.png?raw=true)
+
+#### 9K Instâncias
 ![alt text](output/boxplot_9K_mem.png?raw=true)
+
+#### 10K Instâncias
 ![alt text](output/boxplot_10K_mem.png?raw=true)

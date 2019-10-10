@@ -110,32 +110,6 @@ plt.legend()
 plt.savefig('rect_proc_x_thread_mem.png', bbox_inches='tight')
 plt.clf()
 
-## PER-THREAD AND PER-PROCESS DATA HISTOGRAMS
-
-thread_hist_mem = [statistics.mean(np.array(thread_mem_data_map[key]) / key) for key in keys]
-thread_hist_time = [statistics.mean(np.array(thread_time_data_map[key]) / key) for key in keys]
-proc_hist_mem = [statistics.mean(np.array(proc_mem_data_map[key]) / key) for key in keys]
-proc_hist_time = [statistics.mean(np.array(proc_time_data_map[key]) / key) for key in keys]
-
-print(thread_hist_mem)
-print(thread_hist_time)
-print(proc_hist_mem)
-print(proc_hist_time)
-
-fig, axs = plt.subplots(1, 2, sharey=True, tight_layout=True)
-# We can set the number of bins with the `bins` kwarg
-axs[0].hist(thread_hist_mem, bins=20)
-axs[1].hist(proc_hist_mem, bins=20)
-plt.savefig('hist_mem.png', bbox_inches='tight')
-plt.clf()
-
-fig, axs = plt.subplots(1, 2, sharey=True, tight_layout=True)
-# We can set the number of bins with the `bins` kwarg
-axs[0].hist(thread_hist_time, bins=20)
-axs[1].hist(proc_hist_time, bins=20)
-plt.savefig('hist_time.png', bbox_inches='tight')
-plt.clf()
-
 ## BOXPLOT GRAPHS ##
 
 thread_box_mem = [thread_mem_data_map[key] for key in keys]
@@ -163,6 +137,7 @@ for axe in ax:
     axe.set_ylabel('Memória Utilizada (KB)')
 plt.savefig('boxplot_10_50_mem.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## TIME
 
@@ -182,6 +157,7 @@ for axe in ax:
     axe.set_ylabel('Tempo (s)')
 plt.savefig('boxplot_10_50_time.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## 60 - 100 INSTANCES
 
@@ -204,6 +180,7 @@ for axe in ax:
     axe.set_ylabel('Memória Utilizada (KB)')
 plt.savefig('boxplot_60_100_mem.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## TIME
 
@@ -223,6 +200,7 @@ for axe in ax:
     axe.set_ylabel('Tempo (s)')
 plt.savefig('boxplot_60_100_time.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## 1K - 5K INSTANCES
 
@@ -244,6 +222,7 @@ for axe in ax:
     axe.set_ylabel('Memória Utilizada (KB)')
 plt.savefig('boxplot_1K_5K_mem.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## TIME
 
@@ -263,6 +242,7 @@ for axe in ax:
     axe.set_ylabel('Tempo (s)')
 plt.savefig('boxplot_1K_5K_time.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## 6K - 10K INSTANCES
 
@@ -284,6 +264,7 @@ for axe in ax:
     axe.set_ylabel('Memória Utilizada (KB)')
 plt.savefig('boxplot_6K_10K_mem.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
 
 ## TIME
 
@@ -303,7 +284,7 @@ for axe in ax:
     axe.set_ylabel('Tempo (s)')
 plt.savefig('boxplot_6K_10K_time.png', bbox_inches='tight')
 plt.clf()
-
+plt.close(fig)
 
 ## SEPARATED MEMORY BOXPLOTS - 1K to 10K
 
@@ -324,13 +305,14 @@ for i in range(10):
         axe.set_ylabel('Memória Utilizada (KB)')
     plt.savefig('boxplot_' + str(i + 1) + 'K_mem.png', bbox_inches='tight')
     plt.clf()
+    plt.close(fig)
 
 ## INCREASE PERCENTAGE GRAPH ##
 
 mem_increase_perc = []
 time_increase_perc = []
 
-column_width = 0.20
+column_width = 0.30
 
 for i in range(len(keys)):
     mem_increase_perc.append(round((mean_proc_mem_list[i] * 100.0) / mean_thread_mem_list[i], 2))
@@ -364,6 +346,59 @@ fig.tight_layout()
 
 plt.savefig('bar_increase_perc.png', bbox_inches='tight')
 plt.clf()
+plt.close(fig)
+
+## PER-THREAD AND PER-PROCESS DATA BARS
+
+thread_hist_mem = [round(statistics.mean(np.array(thread_mem_data_map[key]) / key), 2) for key in keys]
+thread_hist_time = [np.format_float_scientific(statistics.mean(np.array(thread_time_data_map[key]) / key), precision=3) for key in keys]
+proc_hist_mem = [round(statistics.mean(np.array(proc_mem_data_map[key]) / key), 2) for key in keys]
+proc_hist_time = [np.format_float_scientific(statistics.mean(np.array(proc_time_data_map[key]) / key), precision=3) for key in keys]
+
+### MEMORY
+
+fig, ax = plt.subplots(figsize=(20, 9))
+rects1 = ax.bar(np.array(range(0, len(keys))) - column_width / 2, np.array(thread_hist_mem), column_width, label='Memória / Thread (KB)')
+rects2 = ax.bar(np.array(range(0, len(keys))) + column_width / 2, np.array(proc_hist_mem), column_width, label='Memória / Processo (KB)')
+ax.set_ylabel('Tamanho (KB)')
+ax.set_xlabel('Número de instâncias')
+ax.set_title('Média de tamanho por cada instância criada')
+ax.set_xticks(np.array(range(0, len(keys))))
+ax.set_xticklabels(keys)
+ax.legend(loc='upper right', fontsize='x-large')
+
+autolabel(rects1)
+autolabel(rects2)
+
+fig.tight_layout()
+
+plt.savefig('bar_mean_mem_unit.png', bbox_inches='tight')
+plt.clf()
+plt.close(fig)
+
+
+### TIME
+
+fig, ax = plt.subplots(figsize=(20, 9))
+rects1 = ax.bar(np.array(range(0, len(keys))) - column_width / 2, np.array(thread_hist_time), column_width, label='Tempo / Thread (s)')
+rects2 = ax.bar(np.array(range(0, len(keys))) + column_width / 2, np.array(proc_hist_time), column_width, label='Tempo / Processo (s)')
+ax.set_ylabel('Tempo (s)')
+ax.set_xlabel('Número de instâncias')
+ax.set_title('Média de tempo por cada instância criada')
+ax.set_xticks(np.array(range(0, len(keys))))
+ax.set_xticklabels(keys)
+ax.legend(loc='upper left', fontsize='x-large')
+
+autolabel(rects1)
+autolabel(rects2)
+
+fig.tight_layout()
+
+plt.savefig('bar_mean_time_unit.png', bbox_inches='tight')
+plt.clf()
+plt.close(fig)
+
+## END
 
 print('mean memory increase: ' + str(statistics.mean(mem_increase_perc)) + '%', 'mean time increase: ' + str(statistics.mean(time_increase_perc)) + '%')
 
