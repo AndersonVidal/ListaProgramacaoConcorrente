@@ -19,10 +19,10 @@ int main(int argc, char *argv[]) {
 	clock_t begin = clock();
 	for (int i = 0; i < n; i++) {
 		int err = pthread_create(&threads[i], NULL, routine, (void *) sleepTime);
-		if (err) {
+		/*if (err) { // Used to test pthread_create error.
 			printf("ERROR in pthread create (%d). ErrorCode: %d\n", i, err);
 			exit(1);		
-		}
+		}*/
 	}
 	clock_t end = clock();
 

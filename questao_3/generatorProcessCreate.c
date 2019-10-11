@@ -19,10 +19,10 @@ int main(int argc, char *argv[]) {
 		if (forkStatus == 0) {
 			sleep(sleepTime);
 			exit(0);
-		} else if (forkStatus == -1) {
+		} /* else if (forkStatus == -1) {   /// USED TO TEST FORK ERROR
 			printf("Error creating process (%d)", i);
 			exit(1);
-		}
+		} */ 
 	}
 	clock_t end = clock();
 
