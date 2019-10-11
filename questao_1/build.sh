@@ -1,0 +1,1 @@
+javac Lock.java FairLock.java
