@@ -20,6 +20,10 @@ O sleep passado para as threads/processos serve para dar tempo de a criação da
 
 O experimento foi realizado com diversos números de instâncias de threads e processos, para assim obtermos o impacto no tempo e na memória em situações diferentes. A quantidade de instâncias obedeceu a seguinte progressão: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000. Para cada quantidade, formam feitas 100 execuções do programa descrito acima, obtendo assim 100 amostras de memória total e tempo total para cada uma das quantidades de instâncias.
 
+Para garantir que seria possível experimentar com esse número de threads/processos, o experimento foi realizado algumas vezes, utilizando checagem de erros na função que cria threads e processos. Dessa forma, garantimos que os N processos conseguiam ser criados e os dados mensurados de forma correta.
+
+Quanto à memória, assumimos que o ps, acordando dentro de 0.7 segundos após o inicio da execução de cada programa, consiga pegar o snapshot de todos os processos criados na memória. Alguns testes foram feitos com sucesso. 
+
 ### Resultados Esperados
 
 É esperado que a criação de threads seja mais leve (consuma menos memória e aconteça em menos tempo), já que apenas é necessário criar uma nova stack no espaço de endereçamento lógico do processo, enquanto que para criar um novo processo é necessário realizar uma cópia de todo o processo pai. Como threads também utilizam de memória compartilhada, é esperado que seu uso de memória seja menor, ainda mais com todas executando a mesma função, já para processos, cada processo necessitaria das suas próprias páginas na memória para poder executar, mesmo que sejam iguais às dos outros processos, aumentando muito o número de page-faults e, consequentemente, de acesso à memória.
@@ -31,6 +35,8 @@ O experimento e a coleta de dados foi realizada em uma máquina com as seguintes
 - Sistema operacional: Ubuntu Mate 18.04
 - Processador: Intel(R) Core(TM) i7-7500U @ 2.70GHz (2 núcleos e 4 threads)
 - Memória RAM: 8GB DDR4 2133 MHz
+
+A máquina não teve nenhuma interferência de usuário durante o experimento.
 
 ## Resultados
 
@@ -49,13 +55,13 @@ Além disso, verificamos o comportamento de cada thread e processo individualmen
 
 ![alt text](output/bar_mean_mem_unit.png?raw=true)
 
-Observamos acima que houve uma diminuição na quantidade de memória utilizada por uma única thread ou processo no decorrer do incremento do número de instâncias. Acreditamos que isso ocorreu porque foi contabilizado o tamanho do processo que originou os demais processos e as threads. Esse tamanho, para uma quantidade menor de instâncias, acaba influenciando bastante no todo, entretanto, para uma grande quantidade de instâncias, acabamos observando uma maior estabilidade, já que esse valor não influencia nesse caso.
+Observamos acima que houve uma diminuição na quantidade de memória utilizada por uma única thread ou processo no decorrer do incremento do número de instâncias. Acreditamos que isso ocorreu porque foi contabilizado o tamanho do processo que originou os demais processos e as threads. Esse tamanho, para uma quantidade menor de instâncias, acaba influenciando bastante no todo, entretanto, para uma grande quantidade de instâncias, acabamos observando uma maior estabilidade, já que esse valor acaba por não ser mais tão significativo em relação ao total.
 
 ![alt text](output/bar_mean_time_unit.png?raw=true)
 
 Já se tratando de tempo, observamos que também é retratada uma diminuição no tempo necessário para inicializar uma nova thread ou processo no decorrer do incremento do número de instâncias.
 
-Diante disso, se torna evidente a interferência que pode haver quando se considera poucas instâncias, já que qualquer variação impacta fortemente nos resultados. Porém, para muitas instâncias, os dados se tornam bem mais consistentes.
+Esse fenomeno pode ser devido a interferências relacionadas a escalonamento, operações do SO ou outros programas, já que qualquer variação pequena pode ser significativa em relação ao tamanho do experimento. Porém, para muitas instâncias, os dados se tornam bem mais consistentes, provavelmente devido à diluição das interferências em relação ao total.
 
 ### Boxplots
 
