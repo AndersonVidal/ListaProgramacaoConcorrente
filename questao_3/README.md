@@ -59,7 +59,7 @@ Diante disso, se torna evidente a interferência que pode haver quando se consid
 
 ### Boxplots
 
-Os dados obtidos com o esperimento foram organizados em gráficos de boxplot, para cada número de instâncias e para dados de memória e tempo. Os gráficos para processos e threads foram colocados lado a lado, entretanto, deve-se observar que a escala, na maioria dos casos, não estará equivalente, pois fazê-lo iria dificultar a visualização (principalmente para os números maiores de instâncias, dado que a discrepância entre os valores tende a ser maior).
+Os dados obtidos com o experimento foram organizados em gráficos de Boxplot, para cada número de instâncias e para dados de memória e tempo. Os gráficos para processos e threads foram colocados lado a lado, entretanto, deve-se observar que a escala, na maioria dos casos, não estará equivalente, pois fazê-lo iria dificultar a visualização (principalmente para os números maiores de instâncias, dado que a discrepância entre os valores tende a ser maior).
 
 O principal intuito com as representações abaixo é o de observar a forma como se deu a distribuição dos dados por nós obtidos e, especialmente, verificar a quantidade e a disposição de valores discrepantes na distribuição.
 
