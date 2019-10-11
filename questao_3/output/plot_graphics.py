@@ -387,7 +387,7 @@ ax.set_xlabel('Número de instâncias')
 ax.set_title('Média de tempo por cada instância criada')
 ax.set_xticks(np.array(range(0, len(keys))))
 ax.set_xticklabels(keys)
-ax.legend(loc='upper left', fontsize='x-large')
+ax.legend(loc='upper right', fontsize='x-large')
 ax.yaxis.grid(True)
 
 # autolabel(rects1)

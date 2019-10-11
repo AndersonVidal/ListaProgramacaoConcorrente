@@ -49,11 +49,13 @@ Além disso, verificamos o comportamento de cada thread e processo individualmen
 
 ![alt text](output/bar_mean_mem_unit.png?raw=true)
 
-Observamos acima que houve uma diminuição na quantidade de memória utilizada por uma única thread ou processo no decorrer do incremento do número de instâncias. **__PORQUE OCORRE?__**
+Observamos acima que houve uma diminuição na quantidade de memória utilizada por uma única thread ou processo no decorrer do incremento do número de instâncias. Acreditamos que isso ocorreu porque foi contabilizado o tamanho do processo que originou os demais processos e as threads. Esse tamanho, para uma quantidade menor de instâncias, acaba influenciando bastante no todo, entretanto, para uma grande quantidade de instâncias, acabamos observando uma maior estabilidade, já que esse valor não influencia nesse caso.
 
 ![alt text](output/bar_mean_time_unit.png?raw=true)
 
 Já se tratando de tempo, observamos que também é retratada uma diminuição no tempo necessário para inicializar uma nova thread ou processo no decorrer do incremento do número de instâncias.
+
+Diante disso, se torna evidente a interferência que pode haver quando se considera poucas instâncias, já que qualquer variação impacta fortemente nos resultados. Porém, para muitas instâncias, os dados se tornam bem mais consistentes.
 
 ### Boxplots
 
